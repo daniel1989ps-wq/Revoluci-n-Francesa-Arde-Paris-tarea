@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revolución Francesa: Arde París</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blood:#8a0303;--blood-dark:#5a0000;--gold:#c5a059;--gold-dim:#8b6d3b;
+  --dark:#050505;--dark-surface:#121212;--parchment:#e8e3d3;--parchment-dim:#b5b0a1;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--parchment);font-family:'Inter',sans-serif;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Cormorant Garamond',serif}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--blood-dark);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--blood)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(5,5,5,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+.logo-gem{width:32px;height:32px;background:var(--blood);transform:rotate(45deg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-gem-inner{width:16px;height:16px;border:1.5px solid rgba(255,255,255,0.6);transform:rotate(-45deg)}
+.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:19px;letter-spacing:.15em;text-transform:uppercase;color:#fff}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;gap:32px}
+.nav-btn{background:none;border:none;color:var(--parchment-dim);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;padding:6px 0;position:relative;transition:color .2s}
+.nav-btn:hover{color:#fff}
+.nav-btn.active{color:var(--gold)}
+.nav-btn.active::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:2px;background:var(--gold);border-radius:1px}
+
+/* ── TABS ── */
+.tab{display:none;animation:fadeIn .4s ease}
+.tab.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO ── */
+.hero{min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;background:linear-gradient(to bottom,rgba(5,5,5,.15) 0%,rgba(5,5,5,1) 100%),radial-gradient(circle at 50% 30%,rgba(138,3,3,.18) 0%,transparent 60%),url('https://image.pollinations.ai/prompt/AAA%20video%20game%20screenshot%2C%20Unreal%20Engine%205.%20Burning%20Paris%20during%20the%20French%20Revolution%2C%20dark%20smoke%2C%20sparks%2C%20epic%20lighting%2C%20no%20text?width=1920&height=1080&nologo=true') center/cover no-repeat}
+.hero-inner{position:relative;z-index:2;max-width:760px;margin:0 auto}
+.hero-label{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-family:'Inter',monospace;margin-bottom:24px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(44px,7vw,80px);line-height:1;color:#fff;text-shadow:0 0 50px rgba(138,3,3,.9);margin-bottom:8px}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(54px,9vw,100px);line-height:1;color:var(--blood);text-shadow:0 0 50px rgba(138,3,3,.6);margin-bottom:28px}
+.hero-desc{font-size:18px;line-height:1.75;color:rgba(232,227,211,.88);font-family:'Cormorant Garamond',serif;margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:15px 32px;background:var(--blood);color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;box-shadow:0 0 24px rgba(138,3,3,.5);transition:background .2s;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:var(--blood-dark)}
+.btn-outline{padding:15px 32px;background:transparent;color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2);cursor:pointer;border-radius:2px;transition:border-color .2s,color .2s;font-family:'Inter',sans-serif}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-line{position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(197,160,89,.5),transparent)}
+
+/* ── SECTION COMMON ── */
+.section-wrap{max-width:900px;margin:0 auto;padding:72px 24px 48px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:var(--gold);margin-bottom:16px}
+.divider{width:80px;height:3px;background:var(--blood);margin:0 auto 20px;border-radius:2px}
+.section-sub{color:var(--parchment-dim);font-size:15px;line-height:1.7;max-width:560px;margin:0 auto}
+
+/* ── STORY ── */
+.story-quote{font-size:18px;font-style:italic;color:var(--parchment-dim);font-family:'Cormorant Garamond',serif;margin-bottom:20px}
+.story-block{margin-bottom:40px}
+.story-section-hdr{border-left:4px solid var(--blood);padding:10px 18px;background:rgba(138,3,3,.05);border-radius:0 8px 8px 0;margin-bottom:18px}
+.story-section-hdr h3{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif}
+.story-text{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.85;color:rgba(181,176,161,.9)}
+.story-dropcap{font-size:60px;float:left;margin:4px 10px 0 0;font-weight:700;color:var(--blood);line-height:1;font-family:'Cormorant Garamond',serif}
+.story-final{font-size:20px;text-align:center;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;border-top:1px solid rgba(255,255,255,.08);padding-top:32px;margin-top:8px}
+
+/* ── GUIDE ── */
+.acts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(max-width:640px){.acts-grid{grid-template-columns:1fr}}
+.act-card{background:var(--dark-surface);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:28px;transition:border-color .3s}
+.act-card:hover{border-color:rgba(138,3,3,.3)}
+.act-hdr{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.act-icon{width:48px;height:48px;border-radius:50%;background:rgba(138,3,3,.1);border:1px solid rgba(138,3,3,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.act-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif}
+.act-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--parchment);line-height:1.2}
+.act-desc{color:rgba(232,227,211,.6);font-size:13px;line-height:1.65;margin-bottom:20px}
+.missions-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(181,176,161,.45);margin-bottom:10px;font-family:'Inter',sans-serif}
+.mission-row{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:rgba(232,227,211,.8)}
+.mission-dot{color:var(--blood);font-weight:700;margin-top:1px;flex-shrink:0}
+
+/* ── CHEATS ── */
+.cheats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1100px;margin:0 auto}
+@media(max-width:700px){.cheats-grid{grid-template-columns:1fr}}
+.cheat-card{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;transition:border-color .3s}
+.cheat-card:hover{border-color:rgba(138,3,3,.4)}
+.cheat-header{background:rgba(138,3,3,.18);border-bottom:1px solid rgba(138,3,3,.25);padding:14px 20px}
+.cheat-mission{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--gold)}
+.cheat-body{padding:20px;display:flex;flex-direction:column;gap:18px}
+.cheat-section-lbl{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--parchment);margin-bottom:8px;font-family:'Inter',sans-serif}
+.cheat-section-lbl svg{width:14px;height:14px;flex-shrink:0}
+.cheat-ul{list-style:disc;list-style-position:inside;color:var(--parchment-dim);font-size:13px;line-height:1.65;padding-left:4px}
+.cheat-tip-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px}
+.cheat-tip-text{font-size:13px;color:var(--parchment-dim);font-style:italic;line-height:1.65}
+.rewards-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.reward-pill{padding:5px 12px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.18);border-radius:20px;font-size:11px;color:var(--parchment);font-weight:500}
+.icon-target{color:var(--blood)}
+.icon-cross{color:#60a5fa}
+.icon-bulb{color:var(--gold)}
+.icon-gift{color:#4ade80}
+
+/* ── SOUNDTRACK ── */
+.soundtrack-layout{display:grid;grid-template-columns:1fr 1.35fr;gap:40px;max-width:1000px;margin:0 auto;padding:0 24px 60px}
+@media(max-width:700px){.soundtrack-layout{grid-template-columns:1fr}}
+.tracklist{display:flex;flex-direction:column;gap:4px}
+.track-btn{width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:14px;padding:13px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.track-btn:hover{background:var(--dark-surface)}
+.track-btn.active{background:rgba(138,3,3,.15);border-color:rgba(138,3,3,.45)}
+.track-num{font-size:12px;font-family:monospace;color:var(--parchment-dim);width:22px;flex-shrink:0;text-align:center}
+.track-btn.active .track-num{color:var(--gold)}
+.track-info{flex:1;min-width:0}
+.track-title-txt{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--parchment);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track-btn.active .track-title-txt{color:#fff}
+.track-char-txt{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--parchment-dim);display:block;margin-top:2px}
+.music-icon{flex-shrink:0;opacity:.35}
+.track-btn.active .music-icon{opacity:1;color:var(--blood)}
+
+/* eq bars */
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:16px}
+.eq-b{width:3px;background:var(--gold);border-radius:1px;animation:eqAnim .5s ease-in-out infinite alternate}
+.eq-b:nth-child(2){animation-delay:.15s}
+.eq-b:nth-child(3){animation-delay:.3s}
+@keyframes eqAnim{from{height:4px;opacity:.5}to{height:14px;opacity:1}}
+
+/* player */
+.player-card{background:var(--dark-surface);border:1px solid rgba(255,255,255,.05);border-radius:22px;padding:30px;position:sticky;top:90px}
+.player-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:16px}
+.player-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--gold);margin-bottom:6px;line-height:1.2}
+.player-char{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blood);margin-bottom:12px;font-family:'Inter',sans-serif}
+.player-style-box{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:8px 13px;font-size:11px;color:var(--parchment-dim);font-style:italic;line-height:1.5}
+.player-style-box b{color:var(--gold);font-style:normal;font-weight:600}
+.vinyl{width:86px;height:86px;border-radius:50%;border:2px solid rgba(255,255,255,.1);overflow:hidden;position:relative;flex-shrink:0}
+.vinyl.spinning{animation:spin 10s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.vinyl img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.vinyl-hole{position:absolute;width:22px;height:22px;background:var(--dark);border-radius:50%;border:1px solid rgba(255,255,255,.15);top:50%;left:50%;transform:translate(-50%,-50%)}
+.player-controls{padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:20px}
+.seek-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.time-txt{font-size:11px;font-family:monospace;color:var(--parchment-dim);min-width:32px}
+.seek-wrap{flex:1;position:relative;height:18px;display:flex;align-items:center;cursor:pointer}
+.seek-track{width:100%;height:4px;background:rgba(0,0,0,.6);border-radius:2px;overflow:hidden;pointer-events:none}
+.seek-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .1s linear}
+.seek-input{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer;margin:0}
+.ctrl-row{display:flex;align-items:center;gap:18px}
+.ctrl-btn{background:none;border:none;color:var(--parchment-dim);cursor:pointer;padding:4px;transition:color .2s;line-height:1;font-size:20px}
+.ctrl-btn:hover{color:#fff}
+.play-btn{width:54px;height:54px;border-radius:50%;background:var(--blood);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;box-shadow:0 0 24px rgba(138,3,3,.45);transition:background .2s;flex-shrink:0}
+.play-btn:hover{background:var(--blood-dark)}
+.vol-row{display:flex;align-items:center;gap:8px;margin-left:auto}
+.vol-btn{background:none;border:none;color:var(--parchment-dim);cursor:pointer;font-size:16px;padding:4px;transition:color .2s}
+.vol-btn:hover{color:#fff}
+.vol-wrap{width:72px;position:relative;height:14px;display:flex;align-items:center}
+.vol-track{width:100%;height:3px;background:rgba(0,0,0,.6);border-radius:2px;overflow:hidden;pointer-events:none}
+.vol-fill{height:100%;background:var(--parchment-dim);border-radius:2px}
+.vol-input{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer;margin:0}
+.err-banner{margin-bottom:16px;padding:10px 14px;border-radius:10px;background:rgba(138,3,3,.1);border:1px solid rgba(138,3,3,.3);font-size:12px;color:#f87171}
+.lyrics-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--parchment-dim);margin-bottom:10px;font-family:'Inter',sans-serif}
+.lyrics-text{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.9;color:rgba(232,227,211,.82);white-space:pre-line;max-height:240px;overflow-y:auto;padding-right:6px}
+.lyrics-text::-webkit-scrollbar{width:4px}
+.lyrics-text::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(255,255,255,.05);background:var(--dark-surface);padding:56px 24px;text-align:center;margin-top:24px}
+.footer-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:#fff;margin-bottom:14px;letter-spacing:.05em}
+.footer-desc{font-size:13px;color:var(--parchment-dim);max-width:480px;margin:0 auto 18px;line-height:1.7}
+.footer-meta{font-size:11px;font-family:monospace;letter-spacing:.15em;text-transform:uppercase;color:var(--parchment-dim)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showTab('home')">
+    <div class="logo-gem"><div class="logo-gem-inner"></div></div>
+    <span class="logo-text">Liberation <span>Studios</span></span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" data-tab="home"      onclick="showTab('home')">Inicio</button>
+    <button class="nav-btn"        data-tab="story"     onclick="showTab('story')">La Historia</button>
+    <button class="nav-btn"        data-tab="guide"     onclick="showTab('guide')">Guía</button>
+    <button class="nav-btn"        data-tab="cheats"    onclick="showTab('cheats')">Trucos</button>
+    <button class="nav-btn"        data-tab="soundtrack"onclick="showTab('soundtrack')">Banda Sonora</button>
+  </div>
+</nav>
+
+<!-- ════════════════════ HOME ════════════════════ -->
+<div id="tab-home" class="tab active">
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Un RPG de Acción Histórica</p>
+      <h1 class="hero-title">REVOLUCIÓN FRANCESA</h1>
+      <p class="hero-sub">ARDE PARÍS</p>
+      <p class="hero-desc">En medio del caos de 1789, un nuevo asesino emerge. <strong>Étienne Moreau</strong> debe navegar por las calles en llamas de París para exponer una conspiración oculta. Desde el asalto a la Bastilla hasta los oscuros salones del poder, tu lucha será por la libertad.</p>
+      <div class="hero-btns">
+        <button class="btn-primary">Pre-ordena Ahora &rarr;</button>
+        <button class="btn-outline" onclick="showTab('story')">Descubre la Historia</button>
+      </div>
+    </div>
+    <div class="hero-line"></div>
+  </div>
+
+  <footer>
+    <p class="footer-title">REVOLUCIÓN FRANCESA: ARDE PARÍS</p>
+    <p class="footer-desc">Un proyecto conceptual inspirado en la Revolución Francesa y la saga Assassin's Creed. Sigue la historia de Étienne Moreau a través de los eventos que cambiaron el mundo.</p>
+    <p class="footer-meta">© 2026 Liberation Studios &nbsp;·&nbsp; Clasificación: M (Maduro)</p>
+  </footer>
+</div>
+
+<!-- ════════════════════ STORY ════════════════════ -->
+<div id="tab-story" class="tab">
+  <div class="section-wrap" style="max-width:860px">
+    <div class="section-header">
+      <h2 class="section-title">Contexto Histórico</h2>
+      <div class="divider"></div>
+      <p class="story-quote">"El árbol de la libertad debe ser regado de vez en cuando con la sangre de patriotas y tiranos."</p>
+    </div>
+
+    <!-- 1 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>1. La Apertura de los Estados Generales — 5 de mayo de 1789</h3></div>
+      <p class="story-text"><span class="story-dropcap">F</span>rancia en 1789 no era solo un país en crisis; era un polvorín a punto de estallar tras décadas de tensiones acumuladas. La deuda de la corona era asfixiante, producto de guerras costosas como la Guerra de los Siete Años y el apoyo militar a la independencia de los Estados Unidos. Este último conflicto, aunque victorioso frente a los británicos, dejó las arcas del Estado vacías y, paradójicamente, importó a Francia los ideales de libertad y representación que sus soldados ayudaron a defender en América.</p>
+      <p class="story-text" style="margin-top:14px">A nivel social, la estructura del Antiguo Régimen se tambaleaba. La población estaba dividida en tres estamentos: la Nobleza y el Clero —que poseían la mayor parte de la tierra y estaban exentos de casi todos los impuestos— y el Tercer Estado, que comprendía desde banqueros y abogados hasta campesinos y artesanos, representando el 98% de la nación. Tras años de malas cosechas y un invierno sin precedentes en 1788, el precio del pan se disparó, provocando hambrunas generalizadas y descontento en los barrios pobres de París.</p>
+      <p class="story-text" style="margin-top:14px">El 5 de mayo de 1789, la sesión inaugural en la sala de los Menus-Plaisirs en Versalles comenzó con una procesión que ya marcaba la desigualdad: el Tercer Estado, vestido de negro riguroso, debía desfilar por separado de la nobleza engalanada y el clero con sus ricas vestiduras. La gran disputa estalló casi de inmediato por el sistema de votación: se votaba por estamento —un voto por orden—, lo que garantizaba que la nobleza y el clero ganaran siempre 2 a 1. El Tercer Estado, influenciado por el Abate Sieyès y liderado por Mirabeau, exigía el voto "por cabeza". Jacques Necker pronunció un discurso técnico que decepcionó a todos al no abordar la cuestión, y este estancamiento fue lo que finalmente transformó una reunión para discutir impuestos en una revolución para cambiar el sistema de gobierno.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>2. El Juramento del Juego de Pelota — 20 de junio de 1789</h3></div>
+      <p class="story-text">El 17 de junio, el Tercer Estado se autoproclamó Asamblea Nacional, declarando que ellos, y no el Rey, representaban la soberanía del pueblo. Tres días después, encontraron las puertas de su sala cerradas con llave y custodiadas por soldados bajo el pretexto de "reparaciones técnicas"; en realidad, la corte intentaba impedir que siguieran aprobando leyes que socavaban la autoridad del monarca.</p>
+      <p class="story-text" style="margin-top:14px">Bajo una lluvia torrencial y temiendo un arresto inminente, los diputados buscaron refugio en la cancha de Jeu de Paume, un antepasado del tenis. Allí, presididos por Jean Sylvain Bailly, los 577 diputados presentes —con solo una excepción— juraron solemnemente "no separarse jamás y reunirse donde las circunstancias lo exijan, hasta que la Constitución del reino esté establecida". Cuando el gran maestro de ceremonias ordenó a los diputados que se disolvieran, Mirabeau respondió: "Estamos aquí por la voluntad del pueblo y solo saldremos por la fuerza de las bayonetas". Al ver que parte del clero y la nobleza liberal se unían al Tercer Estado, el Rey cedió momentáneamente, pero comenzó a concentrar tropas alrededor de París, sembrando el miedo a una represión que desembocaría semanas después en la Toma de la Bastilla.</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>3. La Toma de la Bastilla — 14 de julio de 1789</h3></div>
+      <p class="story-text">A principios de julio de 1789, París era una olla a presión. El despido de Jacques Necker el 11 de julio fue interpretado como un golpe de Estado de la facción aristocrática. En los jardines del Palais-Royal, el joven Camille Desmoulins arengó a la multitud instándola a armarse. El 14 de julio, los ciudadanos asaltaron primero el hospital militar de Les Invalides, donde incautaron unos 30,000 fusiles, pero descubrieron que faltaba la pólvora: estaba en la Bastilla, fortaleza medieval que servía como prisión estatal y almacén de municiones. Aunque solo albergaba a siete prisioneros, para el imaginario colectivo era el símbolo máximo del despotismo.</p>
+      <p class="story-text" style="margin-top:14px">El gobernador De Launay intentó negociar, pero un disparo accidental desató el caos. Los guardias abrieron fuego con cañones, causando cerca de cien muertes. La situación cambió cuando soldados desertores de las Guardias Francesas llegaron con cañones y los apuntaron hacia las puertas. De Launay bajó el puente levadizo bajo promesa de respetar la vida de sus hombres; sin embargo, la furia de la multitud fue incontrolable: De Launay fue golpeado y decapitado, y su cabeza, clavada en una pica, fue desfilada por las calles, marcando el inicio de una nueva violencia revolucionaria. La caída de la Bastilla obligó a Luis XVI a reconocer la nueva Guardia Nacional liderada por La Fayette.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>4. El Gran Miedo en el Campo — Verano de 1789</h3></div>
+      <p class="story-text">Mientras París celebraba la caída de la Bastilla, el resto de Francia se hundía en el pánico. La chispa del "Gran Miedo" fue el rumor de un "complot aristocrático": se decía que la nobleza estaba contratando ejércitos de bandidos extranjeros para quemar las cosechas, condenando al pueblo a la inanición. El rumor funcionaba como un eco: una aldea veía humo a lo lejos, tocaba la campana de rebato, y la aldea vecina asumía que los bandidos ya estaban allí y huía hacia la siguiente, multiplicando el terror.</p>
+      <p class="story-text" style="margin-top:14px">Cuando los campesinos se dieron cuenta de que los bandidos no aparecían, su miedo se transformó en agresividad dirigida contra el sistema feudal. Armados con guadañas y escopetas de caza, se dirigieron a los castillos señoriales no para matar nobles, sino para quemar sus archivos —los "terriers"— que documentaban las deudas feudales y las obligaciones de trabajo que los asfixiaban desde hacía siglos. La magnitud de la revuelta fue tal que la Asamblea Nacional, para calmar a las provincias, celebró la "Noche del 4 de agosto", donde nobles y clero renunciaron a sus privilegios, decretando formalmente la abolición del feudalismo.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>5. Declaración de los Derechos del Hombre y del Ciudadano — 26 de agosto de 1789</h3></div>
+      <p class="story-text">La Declaración aprobada por la Asamblea Nacional Constituyente no es solo un documento legal; es el acta de defunción del Antiguo Régimen y la piedra angular del derecho constitucional moderno. Inspirada en la Ilustración y en la Declaración de Independencia de los Estados Unidos de 1776, su redacción fue un campo de batalla intelectual. La Fayette, asesorado directamente por Thomas Jefferson, impulsó una visión que equilibrara la autoridad del monarca con las libertades civiles.</p>
+      <p class="story-text" style="margin-top:14px">El texto final, con un preámbulo y 17 artículos, transformó a los "súbditos" en "ciudadanos". El Artículo 1 proclamó que "los hombres nacen y permanecen libres e iguales en derechos"; el Artículo 3 declaró que la soberanía reside en la Nación, no en la persona del Rey. Sin embargo, la Declaración inicialmente excluyó a las mujeres —lo que llevó a Olympe de Gouges a escribir su propia versión en 1791— y no abolió la esclavitud en las colonias. El Rey Luis XVI se negó inicialmente a ratificarla, y esta negativa fue el detonante directo de la Marcha sobre Versalles.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>6. La Marcha sobre Versalles — 5 y 6 de octubre de 1789</h3></div>
+      <p class="story-text">En octubre de 1789, la euforia de la Bastilla se había evaporado, reemplazada por el hambre. Las colas en las panaderías de París eran escenarios de disturbios diarios. El detonante final fue el "Banquete del Regimiento de Flandes": en una cena de gala, oficiales borrachos, en presencia de la familia real, supuestamente pisotearon la escarapela tricolor y la sustituyeron por la escarapela blanca de los Borbones. La indignación en los mercados fue absoluta.</p>
+      <p class="story-text" style="margin-top:14px">La mañana del 5 de octubre, unas 7,000 mujeres de los mercados emprendieron la marcha de 20 kilómetros hacia Versalles bajo lluvia incesante, arrastrando cañones y armadas con picas. En la madrugada del 6 de octubre, algunos manifestantes penetraron en el palacio y buscaron a María Antonieta, quien tuvo que huir por un pasadizo secreto segundos antes de que la turba irrumpiera en su habitación y apuñalara su cama vacía. Para calmar la situación, Luis XVI y su familia tuvieron que salir al balcón y, bajo la "protección" de La Fayette, iniciaron un lúgubre viaje de regreso a París. Al instalarse en el viejo palacio de las Tullerías, la monarquía se convirtió efectivamente en prisionera de la Revolución.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>7. La Fuga de Varennes — 20 de junio de 1791</h3></div>
+      <p class="story-text">Para junio de 1791, Luis XVI se sentía como un rehén en las Tullerías. El detonante para su huida fue la Constitución Civil del Clero, que obligaba a los sacerdotes a jurar lealtad al Estado por encima del Papa. Luis, profundamente devoto, estaba horrorizado. El plan, orquestado por el conde sueco Axel von Fersen, consistía en escapar disfrazados hasta reunirse con tropas leales del general Bouillé en la fortaleza fronteriza de Montmédy para negociar desde una posición de fuerza, o liderar una contrarrevolución con apoyo extranjero.</p>
+      <p class="story-text" style="margin-top:14px">La ejecución fue un desastre logístico. En lugar de usar carruajes ligeros, la familia real insistió en viajar junta en una berlina pesada que avanzaba a una velocidad penosa. El momento crítico ocurrió en Sainte-Menehould, donde el jefe de postas Jean-Baptiste Drouet reconoció el perfil del Rey al compararlo con su efigie en un asignado (el papel moneda de la época), montó a caballo y tomó un atajo para adelantarse a la berlina. En Varennes, bloquearon el puente con un carro volcado. Cuando la berlina llegó a medianoche y Luis fue reconocido, admitió finalmente: "Sí, soy vuestro Rey". El regreso a París fue una procesión fúnebre para la monarquía: a partir de este momento, Luis fue visto como un traidor, y este evento dio origen al movimiento republicano radical.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>8. La Declaración de Guerra a Austria — 20 de abril de 1792</h3></div>
+      <p class="story-text">La primavera de 1792 encontró a Francia en un estado de paranoia y fervor mesiánico. Los Girondinos, liderados por Brissot, se convirtieron en el principal motor belicista: la guerra obligaría a los traidores internos a mostrar su verdadera cara y uniría a la nación bajo una causa común. Lo que hacía esta situación única era la extraña alianza de intereses: el Rey también quería la guerra, pero por razones opuestas —él y María Antonieta enviaban secretamente los planes militares franceses a Austria, convencidos de que el ejército revolucionario sería aplastado rápidamente.</p>
+      <p class="story-text" style="margin-top:14px">El único que se opuso con lucidez fue Robespierre, quien advirtió proféticamente: "Nadie ama a los misioneros armados", temiendo que la guerra diera paso a una dictadura militar. El 20 de abril de 1792, la guerra fue aprobada casi por unanimidad. Los primeros encuentros bélicos fueron desastrosos: las tropas, presas del pánico y sospechando de sus propios oficiales, llegaron incluso a asesinarlos. Este ambiente de derrota y sabotaje fue lo que llevó a la radicalización de los Sans-culottes, quienes veían en cada revés militar una prueba de la conspiración del "Comité Austríaco" que supuestamente operaba dentro de las Tullerías.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>9. El Asalto a las Tullerías — 10 de agosto de 1792</h3></div>
+      <p class="story-text">El 10 de agosto de 1792 es conocido como la "Segunda Revolución". El detonante fue el Manifiesto de Brunswick, donde el comandante prusiano amenazaba con la "destrucción total" de París si se le infligía el menor daño a la familia real. Lejos de intimidar, el manifiesto sirvió como prueba definitiva de que el Rey estaba aliado con los invasores. Las 48 secciones de París establecieron una Comuna Insurreccional con una demanda clara: la deposición inmediata del Rey.</p>
+      <p class="story-text" style="margin-top:14px">En la madrugada, las campanas de rebato comenzaron a sonar por todo París. Miles de ciudadanos y batallones de voluntarios —especialmente los de Marsella, que llegaron cantando lo que hoy conocemos como La Marsellesa— convergieron sobre el palacio. El Rey, al revisar las tropas y ser recibido con gritos de "¡Abajo el veto!", fue convencido de abandonar el palacio con su familia para buscar refugio en la Asamblea. Los 900 miembros de la Guardia Suiza que defendían el palacio recibieron, cuando intentaban retirarse, una orden del Rey pidiéndoles que cesaran el fuego: fue su sentencia de muerte. Mientras intentaban retirarse por los jardines, fueron rodeados y masacrados. La monarquía francesa, con más de mil años de historia, había caído en una sola mañana de furia urbana.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>10. Las Masacres de Septiembre — Septiembre de 1792</h3></div>
+      <p class="story-text">En septiembre de 1792, París vivía en histeria colectiva. La fortaleza de Longwy había caído y Verdún, la última gran defensa antes de París, estaba a punto de rendirse ante los prusianos. Se extendió el rumor de que los "enemigos internos" encarcelados organizarían una fuga para degollar a las familias de los patriotas y entregar la ciudad al enemigo. Marat, a través de su periódico L'Ami du Peuple, instó a la población a "purgar" las prisiones antes de marchar al frente. Danton pronunció su famoso discurso: "Para vencer a los enemigos de la patria, necesitamos audacia, más audacia y siempre audacia".</p>
+      <p class="story-text" style="margin-top:14px">Durante cinco días, bandas de ciudadanos armados recorrieron las cárceles de París. No fue un caos desorganizado: en muchas prisiones se establecieron "tribunales populares" improvisados que decidían la suerte de cada acusado en segundos. Entre las víctimas más famosas estuvo la Princesa de Lamballe, amiga de María Antonieta, cuya cabeza, clavada en una pica, fue llevada ante las ventanas de la celda de la Reina. Alrededor de 1,100 a 1,400 personas fueron asesinadas, de las cuales solo una minoría eran presos políticos; el resto eran delincuentes comunes, prostitutas y mendigos. Las autoridades, incluidos Danton y Roland, no hicieron nada por detener la matanza.</p>
+    </div>
+
+    <!-- 11 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>11. Ejecución de Luis XVI — 21 de enero de 1793</h3></div>
+      <p class="story-text">La proclamación de la República en septiembre de 1792 dejó una pregunta pendiente: ¿qué hacer con "Luis Capeto"? El destino del Rey se selló con el hallazgo del "Armario de Hierro" en las Tullerías, una caja fuerte secreta que contenía documentos que probaban su correspondencia con potencias enemigas y sus intentos de sabotear la Revolución. En el juicio, Luis mostró una dignidad que le faltó durante su reinado, alegando que su persona era inviolable según la Constitución de 1791. La votación final fue un drama épico donde cada diputado debía subir a la tribuna y declarar su voto en voz alta. Incluso el primo del Rey, Felipe Igualdad, votó a favor de la ejecución.</p>
+      <p class="story-text" style="margin-top:14px">El 21 de enero de 1793, París amaneció bajo una densa niebla. Se movilizaron 80,000 hombres armados para evitar intentos de rescate. Un grupo de realistas, los "Caballeros del Puñal", intentó incitar a la multitud a rescatar al monarca, pero el miedo era tan grande que nadie se unió. En el cadalso, Luis intentó pronunciar unas últimas palabras: "Pueblo de Francia, muero inocente...", pero el general Santerre ordenó un redoble de tambores que ahogó su voz. A las 10:22 de la mañana, la cuchilla cayó. La ejecución marcó el punto de no retorno: toda la Europa monárquica se uniría ahora para destruir a Francia.</p>
+    </div>
+
+    <!-- 12 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>12. Creación del Comité de Salvación Pública — Abril de 1793</h3></div>
+      <p class="story-text">Para la primavera de 1793, la República estaba al borde del abismo. La ejecución del Rey había provocado la formación de la Primera Coalición (Gran Bretaña, España, Holanda y Austria atacando desde todos los flancos) y en La Vendée estalló una insurrección campesina sangrienta. El 6 de abril de 1793, se fundó el Comité de Salvación Pública. Originalmente dominado por Danton, quien buscaba reconciliación y diplomacia, la incapacidad para detener las derrotas llevó a su caída. En julio, fue reemplazado por una facción más radical liderada por Robespierre, Couthon y Saint-Just.</p>
+      <p class="story-text" style="margin-top:14px">Bajo su mando, el Comité se convirtió en el motor del Terror. Su filosofía era clara: en tiempos de revolución, el gobierno debe basarse tanto en la virtud como en el terror. El Comité instauró una red de vigilancia masiva: se enviaron "Representantes en Misión" a las provincias con poderes para ejecutar a "traidores" y se crearon Comités de Vigilancia en cada barrio de París. Cualquiera que no mostrara suficiente entusiasmo —quienes no usaban la escarapela, seguían usando el título de "Monsieur" en lugar de "Citoyen", o simplemente se quejaban del precio del pan— podía ser denunciado. París se transformó en una ciudad de susurros donde incluso las paredes tenían oídos.</p>
+    </div>
+
+    <!-- 13 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>13. El Asesinato de Marat — 13 de julio de 1793</h3></div>
+      <p class="story-text">En el verano de 1793, Jean-Paul Marat era la figura más polarizante de Francia. Aquejado de una penosa enfermedad inflamatoria de la piel, se veía obligado a pasar casi todo el día sumergido en una bañera de cobre llena de agua caliente y compresas de vinagre para aliviar su tormento. Desde ese improvisado escritorio, dictaba las listas de "traidores" que debían ser enviados a la guillotina. Mientras en París era adorado por los Sans-culottes, en las provincias una joven llamada Charlotte Corday lo veía como el "monstruo" responsable de la radicalización de la Revolución.</p>
+      <p class="story-text" style="margin-top:14px">El 13 de julio, tras comprar un cuchillo de cocina en el Palais-Royal, Corday logró entrar en la casa de Marat con la excusa de entregarle una lista de conspiradores girondinos en Normandía. Mientras Marat anotaba los nombres diciendo "pronto los haré guillotinar a todos", Corday sacó el cuchillo y lo hundió en su pecho, perforándole el pulmón y la aorta. El asesinato no trajo la paz, sino que convirtió a Marat en el mártir supremo de la Revolución. Su corazón fue colgado del techo del Club de los Cordeliers y su muerte sirvió como justificación perfecta para iniciar el Gran Terror.</p>
+    </div>
+
+    <!-- 14 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>14. La Caída de los Girondinos — 2 de junio de 1793</h3></div>
+      <p class="story-text">La lucha entre los Girondinos (moderados que representaban a la burguesía provincial) y los Montañeses (radicales apoyados por la Comuna de París) llegó a su punto de ruptura en la primavera de 1793. El 2 de junio de 1793, unos 80,000 ciudadanos armados y miembros de la Guardia Nacional, bajo el mando de François Hanriot, rodearon el Palacio de las Tullerías, donde se reunía la Convención. Hanriot colocó cañones apuntando directamente a las puertas de la asamblea.</p>
+      <p class="story-text" style="margin-top:14px">Cuando los diputados intentaron salir en procesión solemne, Hanriot les gritó: "¡Digan a su estúpido presidente que él y su asamblea están acabados! ¡Cañoneros, a sus puestos!". Humillados y bajo la amenaza de las bayonetas, los diputados se vieron obligados a votar el arresto de 29 de sus propios colegas. Fue la primera vez que la fuerza militar y la presión de la muchedumbre urbana dictaron directamente la composición del gobierno legal de Francia. Muchos de los girondinos arrestados terminarían en la guillotina meses después, cantando La Marsellesa hasta que el último de ellos fue ejecutado.</p>
+    </div>
+
+    <!-- 15 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>15. El Festival del Ser Supremo — 8 de junio de 1794</h3></div>
+      <p class="story-text">En junio de 1794, Robespierre se encontraba en la cima de su poder y también de su aislamiento. Convencido de que el ateísmo era aristocrático, instauró el Culto al Ser Supremo para reemplazar tanto al cristianismo como al "Culto a la Razón" de los radicales extremistas. El 8 de junio, se celebró el festival más ambicioso de la Revolución, diseñado por el pintor Jacques-Louis David. En el Campo de Marte, Robespierre, vestido con un traje azul celeste, descendió de una inmensa montaña artificial de cartón piedra mientras quemaba una efigie que representaba al Ateísmo, la Ambición y el Egoísmo, de la cual surgía una estatua de la Sabiduría.</p>
+      <p class="story-text" style="margin-top:14px">Aunque el evento atrajo a cientos de miles de parisinos, sembró las semillas de la caída de Robespierre. Sus colegas lo observaban con una mezcla de burla y terror, murmurando que quería convertirse en un nuevo dios vivo. Además, solo dos días después del festival, Robespierre impulsó la Ley de 22 de Pradial, que eliminaba el derecho a defensa en los juicios, iniciando el periodo del "Gran Terror" donde las ejecuciones se contaban por miles. La fiesta de la fraternidad resultó ser el preludio de la carnicería final.</p>
+    </div>
+
+    <!-- 16 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>16. El Reinado del Terror — 1793–1794</h3></div>
+      <p class="story-text">El Gran Terror no fue simplemente una fase de ejecuciones, sino una reestructuración total de la psique social francesa. El motor legal fue la Ley de 22 de Pradial, que eliminaba prácticamente todos los derechos del acusado: se suprimió la necesidad de abogados, el interrogatorio previo y la comparecencia de testigos. El veredicto solo podía ser absolución o muerte, basándose únicamente en la "convicción moral" del jurado. Las ejecuciones se organizaron en "hornadas" donde grupos de hasta 50 o 60 personas eran enviados diariamente a la guillotina. La Plaza de la Revolución quedó tan saturada de sangre que el olor obligó a trasladar la guillotina a la Plaza de la Nación.</p>
+      <p class="story-text" style="margin-top:14px">El miedo era absoluto: la gente evitaba hablar en las calles, los vecinos se denunciaban entre sí por miedo a ser denunciados primero. La ciencia y el arte no fueron perdonados: Antoine Lavoisier, el padre de la química moderna, fue ejecutado bajo el argumento de que "la República no necesita sabios". Las prisiones como la Conciergerie, apodada "la antecámara de la muerte", estaban hacinadas con personas de todas las clases. Muchos intentaron escapar a través de las Catacumbas de París, convirtiendo el subsuelo de la ciudad en un laberinto de resistencia y desesperación.</p>
+    </div>
+
+    <!-- 17 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>17. Reacción de Termidor: Caída de Robespierre — 27 y 28 de julio de 1794</h3></div>
+      <p class="story-text">El 9 de Termidor del Año II marcó el colapso del Terror por puro instinto de supervivencia de los diputados. Robespierre regresó a la asamblea para anunciar que tenía una nueva lista de "traidores" entre los presentes, pero se negó a dar nombres. Esto unió a sus enemigos y a sus antiguos aliados en una conspiración desesperada: si no lo eliminaban, ellos serían los siguientes. Cuando al día siguiente intentó hablar en la Convención, fue acallado por gritos de "¡Abajo el tirano!" y el repique incesante de la campana del presidente de la asamblea.</p>
+      <p class="story-text" style="margin-top:14px">La noche fue eléctrica y tormentosa. Mientras las tropas de la Convención rodeaban el Ayuntamiento, dentro reinaba la confusión. En circunstancias que aún hoy se debaten —un intento de suicidio o un disparo del gendarme Merda—, una bala destrozó la mandíbula de Robespierre, dejándolo mudo y ensangrentado sobre una mesa. Saint-Just, el "Ángel del Terror", permaneció impasible mientras sus sueños de una república de la virtud se desmoronaban. Al día siguiente, 22 de los líderes jacobinos fueron llevados a la guillotina sin juicio previo, marcando el fin del periodo más radical de la Revolución.</p>
+    </div>
+
+    <!-- 18 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>18. El Terror Blanco — 1795</h3></div>
+      <p class="story-text">Tras la caída de Robespierre, Francia no encontró la paz, sino una nueva forma de violencia: el Terror Blanco. Este movimiento fue una campaña de venganza sangrienta lanzada principalmente por la Juventud Dorada (Jeunesse Dorée), también llamados muscadins por el perfume que usaban. Estos jóvenes, hijos de nobles y burgueses, vestían de forma extravagante —cuellos altos, abrigos con solapas inmensas y peinados exagerados— para burlarse de la austeridad de los años jacobinos.</p>
+      <p class="story-text" style="margin-top:14px">Armados con pesados garrotes con punta de plomo, patrullaban los barrios populares atacando a cualquiera que pareciera un antiguo jacobino. Las cárceles, antes llenas de nobles, ahora se llenaban de antiguos verdugos que eran masacrados por turbas realistas. Fue una época de reacción conservadora donde se intentó borrar todo rastro del radicalismo de 1793, incendiando los clubes populares y persiguiendo a los Sans-culottes en sus propios hogares.</p>
+    </div>
+
+    <!-- 19 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>19. Las Campañas de Italia — 1796–1797</h3></div>
+      <p class="story-text">En 1796, el Directorio estaba al borde de la quiebra y la guerra en Europa se había estancado. Fue entonces cuando un joven general de 26 años, Napoleón Bonaparte, recibió el mando del Ejército de Italia. Lo que encontró fue una fuerza desmoralizada, mal alimentada y con uniformes en harapos. Con una proclama donde les prometió "honor, gloria y riqueza" en las llanuras de Italia, transformó a esta masa en una máquina de guerra relámpago.</p>
+      <p class="story-text" style="margin-top:14px">La campaña fue una obra maestra de la estrategia militar, aplicando el principio de concentración de fuerzas en el punto más débil del enemigo. El momento más icónico ocurrió en la Batalla del Puente de Arcole: ante el fuego devastador que impedía cruzar el río Alpone, Napoleón tomó una bandera y cargó personalmente hacia el puente para inspirar a sus hombres, cayendo en el barro del pantano y casi muriendo bajo las balas enemigas. Estas victorias crearon el mito del "pequeño cabo" que podía traer orden al caos revolucionario. Italia fue el escenario donde Napoleón dejó de ser un general republicano para convertirse en un estadista con ambiciones imperiales.</p>
+    </div>
+
+    <!-- 20 -->
+    <div class="story-block">
+      <div class="story-section-hdr"><h3>20. El Golpe de Estado de 18 de Brumario — 9 de noviembre de 1799</h3></div>
+      <p class="story-text">Para 1799, la Revolución estaba agotada. El Directorio se había vuelto sinónimo de corrupción, inflación y derrotas militares. Cuando Napoleón regresó de Egipto, fue recibido como el salvador de la patria. Junto con el director Sieyès, organizó un golpe de Estado para derrocar al gobierno y establecer un consulado fuerte. El evento tuvo lugar el 18 de Brumario en el palacio de Saint-Cloud, a las afueras de París, para evitar la interferencia de la turba parisina.</p>
+      <p class="story-text" style="margin-top:14px">El golpe casi fracasa por la falta de carisma oratorio de Napoleón: al intentar hablar ante el Consejo de los Quinientos, se puso nervioso, fue abucheado e incluso agredido físicamente por los diputados al grito de "¡Fuera de la ley el dictador!". La situación fue salvada por su hermano Lucien Bonaparte, quien era el presidente del consejo. Lucien salió del salón, se dirigió a las tropas y, apuntando con una espada al pecho de Napoleón, juró que él mismo lo mataría si alguna vez traicionaba la libertad de Francia. Convencidos por este gesto dramático, los granaderos entraron al salón con las bayonetas caladas, obligando a los diputados a saltar por las ventanas. La Revolución, que había comenzado con la búsqueda de una constitución y libertad, terminaba con el poder concentrado en manos de un solo hombre. El Imperio estaba en el horizonte.</p>
+    </div>
+
+    <p class="story-final">En este mundo fracturado, ¿qué precio estarías dispuesto a pagar por la verdadera libertad?</p>
+  </div>
+  <footer>
+    <p class="footer-title">REVOLUCIÓN FRANCESA: ARDE PARÍS</p>
+    <p class="footer-desc">Un proyecto conceptual inspirado en la Revolución Francesa y la saga Assassin's Creed.</p>
+    <p class="footer-meta">© 2026 Liberation Studios &nbsp;·&nbsp; Clasificación: M (Maduro)</p>
+  </footer>
+</div>
+
+<!-- ════════════════════ GUIDE ════════════════════ -->
+<div id="tab-guide" class="tab">
+  <div class="section-wrap">
+    <div class="section-header">
+      <h2 class="section-title" style="color:var(--parchment)">Guía del Juego</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Estructura de actos y misiones principales en la travesía de Étienne Moreau.</p>
+    </div>
+    <div class="acts-grid">
+      <div class="act-card">
+        <div class="act-hdr"><div class="act-icon">📜</div><div><p class="act-label">Acto I</p><p class="act-name">El Despertar del Artesano</p></div></div>
+        <p class="act-desc">La chispa se enciende. Desde los pasillos de Versalles hasta los muros de la Bastilla, Étienne da sus primeros pasos en una ciudad a punto de estallar.</p>
+        <p class="missions-lbl">Misiones Principales</p>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Gran Debate (Versalles)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Unidos hasta el final (Juego de Pelota)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Caída del Tirano (Toma de la Bastilla)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Palabras de Libertad (Declaración de Derechos)</span></div>
+      </div>
+      <div class="act-card">
+        <div class="act-hdr"><div class="act-icon">👑</div><div><p class="act-label">Acto II</p><p class="act-name">La Corona Vacilante</p></div></div>
+        <p class="act-desc">El rey es un prisionero en su propio reino. Las mujeres marchan, la familia real intenta huir, y el asalto a las Tullerías marca el fin de mil años de monarquía.</p>
+        <p class="missions-lbl">Misiones Principales</p>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Rugido de las Madres (Marcha a Versalles)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Cacería Real (Fuga de Varennes)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Fuego en la Frontera (Guerra a Austria)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Fin de la Corona (Asalto a las Tullerías)</span></div>
+      </div>
+      <div class="act-card">
+        <div class="act-hdr"><div class="act-icon">💀</div><div><p class="act-label">Acto III</p><p class="act-name">El Reinado del Terror</p></div></div>
+        <p class="act-desc">La guillotina no descansa. La paranoia se apodera de París bajo el mando de Robespierre. Étienne debe navegar entre conspiraciones y purgas.</p>
+        <p class="missions-lbl">Misiones Principales</p>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Sangre de Reyes (Ejecución de Luis XVI)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Vigilancia Revolucionaria (Comité de Salvación)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Ángel del Asesinato (Muerte de Marat)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>La Utopía de Robespierre (Festival del Ser Supremo)</span></div>
+      </div>
+      <div class="act-card">
+        <div class="act-hdr"><div class="act-icon">⚔️</div><div><p class="act-label">Acto IV</p><p class="act-name">El Camino al Imperio</p></div></div>
+        <p class="act-desc">El Terror cae, pero la sangre sigue corriendo. Desde las catacumbas de París hasta los campos de batalla en Italia, un joven general se alza.</p>
+        <p class="missions-lbl">Misiones Principales</p>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Sombras del Terror (Caída de Robespierre)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>Venganza de Seda (El Terror Blanco)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Ascenso del Águila (Campañas de Italia)</span></div>
+        <div class="mission-row"><span class="mission-dot">·</span><span>El Nuevo Orden (Golpe de 18 de Brumario)</span></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p class="footer-title">REVOLUCIÓN FRANCESA: ARDE PARÍS</p>
+    <p class="footer-desc">Un proyecto conceptual inspirado en la Revolución Francesa y la saga Assassin's Creed.</p>
+    <p class="footer-meta">© 2026 Liberation Studios &nbsp;·&nbsp; Clasificación: M (Maduro)</p>
+  </footer>
+</div>
+
+<!-- ════════════════════ CHEATS ════════════════════ -->
+<div id="tab-cheats" class="tab">
+  <div style="max-width:1100px;margin:0 auto;padding:72px 24px 48px">
+    <div class="section-header">
+      <h2 class="section-title" style="color:var(--parchment)">Guía de Asesino: Trucos y Misiones</h2>
+      <div class="divider"></div>
+      <p class="section-sub" style="font-style:italic">"La información es un arma más afilada que cualquier espada. Usa estos conocimientos para guiar a Étienne Moreau a través de las sombras de la Revolución."</p>
+    </div>
+    <div class="cheats-grid" id="cheatsGrid"></div>
+  </div>
+  <footer>
+    <p class="footer-title">REVOLUCIÓN FRANCESA: ARDE PARÍS</p>
+    <p class="footer-desc">Un proyecto conceptual inspirado en la Revolución Francesa y la saga Assassin's Creed.</p>
+    <p class="footer-meta">© 2026 Liberation Studios &nbsp;·&nbsp; Clasificación: M (Maduro)</p>
+  </footer>
+</div>
+
+<!-- ════════════════════ SOUNDTRACK ════════════════════ -->
+<div id="tab-soundtrack" class="tab">
+  <div style="text-align:center;padding:72px 24px 28px">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:var(--gold);margin-bottom:14px">Banda Sonora Original</h2>
+    <div class="divider"></div>
+    <p style="color:var(--parchment-dim);max-width:540px;margin:0 auto;font-size:15px;line-height:1.7">Sumérgete en la atmósfera de la Revolución. Cada composición refleja el alma y el trágico destino de los personajes que Étienne Moreau encontrará en su camino.</p>
+  </div>
+
+  <div class="soundtrack-layout">
+    <div class="tracklist" id="tracklist"></div>
+    <div id="playerCard" class="player-card"></div>
+  </div>
+
+  <!-- Hidden audio element -->
+  <audio id="audioEl" preload="metadata"></audio>
+
+  <footer>
+    <p class="footer-title">REVOLUCIÓN FRANCESA: ARDE PARÍS</p>
+    <p class="footer-desc">Un proyecto conceptual inspirado en la Revolución Francesa y la saga Assassin's Creed.</p>
+    <p class="footer-meta">© 2026 Liberation Studios &nbsp;·&nbsp; Clasificación: M (Maduro)</p>
+  </footer>
+</div>
+
+<script>
+/* ─── TAB SWITCHING ─── */
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelector('[data-tab="' + id + '"]').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* ─── CHEATS DATA ─── */
+const CHEATS = [
+  {id:1,mission:"1. El Gran Debate",main:["Infiltrate en el Palacio de Versalles como escolta de Necker.","Escucha las demandas del pueblo."],sec:["Asegura que los delegados del Tercer Estado no sean silenciados por la guardia real."],tip:"Usa a la multitud del Tercer Estado para camuflarte. Mantén una distancia prudente de los guardias reales mientras escoltas a Necker para no levantar sospechas.",rewards:["500 XP","Mapa de Versalles desbloqueado","Atuendo: Capucha de Plebeyo"]},
+  {id:2,mission:"2. Unidos hasta el final",main:["Guía a los diputados a través de las calles lluviosas de Versalles hasta la cancha de pelota."],sec:["Protege el perímetro mientras firman el acta que cambiará el destino del país."],tip:"La lluvia torrencial oculta el sonido de tus pasos. Usa los tejados para detectar y eliminar a las patrullas antes de que intercepten a los diputados.",rewards:["750 XP","Habilidad desbloqueada: Paso Silencioso","250 Francos"]},
+  {id:3,mission:"3. Caída del Tirano",main:["Lidera a la muchedumbre hacia los muros de la Bastilla.","Infiltrate por las almenas y libera a los prisioneros."],sec:["Asegura los depósitos de pólvora antes de que los cañones destruyan el barrio de Saint-Antoine."],tip:"Escala por los muros laterales menos vigilados de la Bastilla mientras la muchedumbre enfurecida distrae a la guarnición principal en la entrada.",rewards:["1200 XP","Arma: Mosquete de la Guardia","500 Francos"]},
+  {id:4,mission:"4. Cenizas del Feudalismo",main:["Viaja a las afueras de París y ayuda a los campesinos a recuperar las tierras que les pertenecen."],sec:["Quema los archivos señoriales en el castillo de un noble corrupto sin que te detecten sus guardias privados."],tip:"El sigilo es vital. Usa dardos sedantes con los guardias privados y lanza una antorcha a los archivos desde una ventana exterior para evitar entrar a la sala.",rewards:["900 XP","Mejora: Bolsa de munición ampliada","Materiales de artesanía"]},
+  {id:5,mission:"5. Palabras de Libertad",main:["Escolta a La Fayette mientras presenta el borrador de la declaración."],sec:["Elimina a los asesinos realistas en los tejados de la ciudad antes de que roben el documento original."],tip:"Mantén la vista en las alturas. Usa tu Visión de Águila para identificar a los asesinos en los tejados y elimínalos rápidamente con armas a distancia.",rewards:["1000 XP","Atuendo: Ciudadano Ilustrado","Documento Histórico: Borrador Original"]},
+  {id:6,mission:"6. El Rugido de las Madres",main:["Acompaña a la multitud de mujeres hacia Versalles.","Asegura que entren al palacio."],sec:["Evita que la Guardia Suiza abra fuego contra la población civil mientras exigen pan."],tip:"Interponte entre la Guardia Suiza y las mujeres. Usa bombas de humo para cegar a los tiradores antes de que tengan la oportunidad de abrir fuego.",rewards:["1500 XP","Arma: Pica de la Guardia Nacional","750 Francos"]},
+  {id:7,mission:"7. Cacería Real",main:["Persigue a caballo por los campos franceses a un carruaje sospechoso que ha salido a medianoche."],sec:["Identifica al Rey en la posta de Varennes y da la señal para detener la traición de la fuga."],tip:"Mantén un ritmo constante a caballo para no agotar a tu montura. Al llegar a Varennes, usa el disfraz de un mozo de cuadra para acercarte e identificar al Rey.",rewards:["1800 XP","Montura desbloqueada: Caballo de Posta","1000 Francos"]},
+  {id:8,mission:"8. Fuego en la Frontera",main:["Localiza el nido de espionaje austriaco en el barrio de Le Marais."],sec:["Destruye sus planes de invasión antes de que el ejército francés marche al frente."],tip:"Los espías austriacos son letales en combate cuerpo a cuerpo. Usa el entorno a tu favor y realiza asesinatos aéreos desde las cornisas para neutralizarlos.",rewards:["1300 XP","Herramienta: Dardos Envenenados","Receta de Veneno"]},
+  {id:9,mission:"9. El Fin de la Corona",main:["Lidera el ataque de los Sans-culottes en el asalto final a las Tullerías.","Derrota a la Guardia Suiza en combate visceral."],sec:["Captura los tesoros ocultos de la monarquía en la fortaleza."],tip:"La Guardia Suiza lucha en formación cerrada. Rompe sus filas usando explosivos o embistiendo con fuerza antes de enzarzarte en combate singular.",rewards:["2000 XP","Arma: Espada de Oficial Suizo","1500 Francos"]},
+  {id:10,mission:"10. Justicia Ciega",main:["Navega por la paranoia que se ha apoderado de las calles."],sec:["Decide: ¿ayudas a Marat a señalar a los supuestos traidores o intentas salvar a inocentes de la guillotina?"],tip:"Tus decisiones aquí afectan tu nivel de notoriedad. Salvar inocentes requerirá distracciones rápidas; ayudar a Marat implicará combate directo contra los acusados.",rewards:["1600 XP","Atuendo: Sombra de París","Mejora de sigilo"]},
+  {id:11,mission:"11. Sangre de Reyes",main:["Vigila desde las sombras la abarrotada plaza durante la ejecución de Luis XVI."],sec:["Elimina a los tiradores que intentan salvar al Rey antes de que caiga la cuchilla."],tip:"Tienes un tiempo límite muy estricto. Memoriza las posiciones de los tiradores en los balcones y usa la hoja oculta para no alertar a la multitud.",rewards:["2200 XP","Mejora: Hoja Oculta Doble","Artefacto: Reloj del Rey"]},
+  {id:12,mission:"12. Vigilancia Revolucionaria",main:["Investiga las tabernas de París e intercepta cartas cifradas por encargo de Robespierre."],sec:["Entrega los nombres de los traidores al Comité de Salvación Pública."],tip:"Escóndete en los fardos de heno cerca de las tabernas para escuchar conversaciones. Roba las cartas usando sigilo para no levantar sospechas.",rewards:["1700 XP","Habilidad desbloqueada: Oído Agudo","800 Francos"]},
+  {id:13,mission:"13. El Ángel del Asesinato",main:["Sigue a través de París a una mujer extraña que busca audiencia con Marat."],sec:["Llega antes de que la turba linche a Charlotte Corday para descubrir quién la envió realmente."],tip:"Mantén la distancia al seguir a Corday. Cuando la turba ataque, usa granadas aturdidoras para dispersarlos sin causar bajas civiles.",rewards:["1900 XP","Arma: Daga de la Justicia","Pintura de David (Coleccionable)"]},
+  {id:14,mission:"14. Purga en la Convención",main:["Rodea el edificio legislativo con los cañones de la Guardia Nacional."],sec:["Intimida a los diputados para que entreguen a los girondinos moderados. No dejes que nadie escape por las puertas traseras."],tip:"Posiciona a tus hombres en todas las salidas. Si un diputado intenta huir, derríbalo con un placaje no letal para mantener el control de la situación.",rewards:["2100 XP","Mejora: Bomba de Humo Cegadora","1200 Francos"]},
+  {id:15,mission:"15. La Utopía de Robespierre",main:["Infiltrate en el despacho privado de Robespierre mientras él preside el Festival del Ser Supremo."],sec:["Busca pruebas de que su locura y sus listas de ejecución no tienen fin."],tip:"Todo el mundo está en el festival, pero la guardia de élite vigila su despacho. Entra por las claraboyas del techo para evitar las patrullas del pasillo.",rewards:["2300 XP","Atuendo: Túnica del Ser Supremo","Habilidad: Mezcla Rápida"]},
+  {id:16,mission:"16. Sombras del Terror",main:["Ayuda a un grupo de familias perseguidas a escapar de París a través de las catacumbas."],sec:["Asegura su escape antes de que sus nombres aparezcan en la lista de ejecuciones de la mañana."],tip:"Las catacumbas están oscuras y patrulladas. Usa tu antorcha solo cuando sea necesario y apágala al escuchar pasos de los guardias revolucionarios.",rewards:["2500 XP","Mapa de las Catacumbas desbloqueado","Bomba de Gas Venenoso"]},
+  {id:17,mission:"17. El Cazador Cazado",main:["¡Asalta el Hotel de Ville! Ábrete paso entre los defensores de Robespierre."],sec:["Pon fin a la tiranía del 'Incorruptible' en una noche de caos y pólvora."],tip:"Los últimos leales a Robespierre lucharán hasta la muerte. Usa el entorno destructible a tu favor y no escatimes en munición para abrir brechas.",rewards:["3000 XP","Arma: Pistola de Duelo de Termidor","2000 Francos"]},
+  {id:18,mission:"18. Venganza de Seda",main:["Protege a un antiguo oficial jacobino de los ataques de la 'Juventud Dorada' (Muscadins)."],sec:["Evita que consigan su venganza sangrienta en los callejones."],tip:"Los Muscadins atacan en grupos grandes con garrotes pesados. Usa contraataques rápidos y mantén a tu protegido a tus espaldas en los callejones estrechos.",rewards:["2400 XP","Mejora: Armadura Pesada","Atuendo: Muscadin Renegado"]},
+  {id:19,mission:"19. El Ascenso del Águila",main:["Viaja al frente italiano y ayuda al joven general Napoleón Bonaparte a ganar la batalla del Puente de Arcole."],sec:["Protege su flanco de una carga de caballería desesperada."],tip:"Usa las picas y el terreno fangoso para frenar a la caballería austriaca. Dispara a los jinetes antes de que entren en rango de combate cuerpo a cuerpo.",rewards:["3500 XP","Atuendo: Uniforme de Campaña Italiano","Sable de Caballería"]},
+  {id:20,mission:"20. El Nuevo Orden",main:["Escolta a Napoleón al Consejo de los Quinientos durante el golpe de estado."],sec:["Cuando los diputados lo ataquen, desenvaina tu acero y asegura el salón para el nuevo Cónsul."],tip:"Mantente muy cerca de Napoleón. Cuando los diputados se abalancen, usa bombas de humo para desorientarlos y extráelo de la sala de forma segura.",rewards:["5000 XP","Título Desbloqueado: Sombra del Primer Cónsul","Arma Legendaria: Espada del Imperio"]}
+];
+
+(function renderCheats() {
+  const g = document.getElementById('cheatsGrid');
+  g.innerHTML = CHEATS.map(c => `
+    <div class="cheat-card">
+      <div class="cheat-header"><p class="cheat-mission">${c.mission}</p></div>
+      <div class="cheat-body">
+        <div>
+          <p class="cheat-section-lbl"><svg class="icon-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Objetivos Principales</p>
+          <ul class="cheat-ul">${c.main.map(o=>`<li>${o}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <p class="cheat-section-lbl"><svg class="icon-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>Objetivos Secundarios</p>
+          <ul class="cheat-ul">${c.sec.map(o=>`<li>${o}</li>`).join('')}</ul>
+        </div>
+        <div class="cheat-tip-box">
+          <p class="cheat-section-lbl" style="margin-bottom:6px"><svg class="icon-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.3 6H8.3A7 7 0 0 1 5 9a7 7 0 0 1 7-7z"/></svg>Consejo de Asesino</p>
+          <p class="cheat-tip-text">"${c.tip}"</p>
+        </div>
+        <div>
+          <p class="cheat-section-lbl"><svg class="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>Recompensas</p>
+          <div class="rewards-wrap">${c.rewards.map(r=>`<span class="reward-pill">${r}</span>`).join('')}</div>
+        </div>
+      </div>
+    </div>`).join('');
+})();
+
+/* ─── SOUNDTRACK ─── */
+const TRACKS = [
+  {id:1,title:"La Virtud y el Terror",character:"Maximilien Robespierre",style:"Cantos gregorianos, cuerdas disonantes, tambores pesados.",file:"music/01_Maximilien_Robespierre_La_Virtud_y_el_Terror.mp3",lyrics:`De las sombras de Arras, una voz se alzó.
+El incorruptible, la pureza juró.
+"La virtud sin terror es impotencia", dictó.
+Y el filo de la ley sobre París cayó.
+
+Las listas se escriben a la luz del candil.
+Nadie está a salvo, ni el noble ni el vil.
+La guillotina baila su danza mortal.
+El sacerdote de la razón ha perdido el cabal.
+
+¡Robespierre! La campana sonó.
+El cazador cazado, su voz se apagó.
+
+Con la mandíbula rota sobre la mesa de madera.
+El arquitecto del miedo encontró su condena.
+¡Robespierre! La campana sonó.
+El cazador cazado, su voz se apagó.`},
+  {id:2,title:"El Peso de la Corona",character:"Luis XVI",style:"Violonchelo solitario, melancólico, marchas militares lejanas.",file:"music/02_Luis_XVI_El_Peso_de_la_Corona.mp3",lyrics:`Heredero de un sol que dejó de brillar.
+Con llaves y cerrojos, prefería jugar.
+El hambre en las calles, no supo entender,
+Mientras los muros de Versalles empezaban a ceder.
+
+La noche en Varennes, la berlina pesada.
+El rostro en la moneda, la fuga frustrada.
+De rey por derecho a prisionero en su hogar,
+El ciudadano Capeto ya no puede reinar.
+
+¡Niebla de enero! La plaza guarda.
+Ochenta mil hombres, la suerte está echada.
+"¡Muero inocente!", intentó proclamar,
+Pero el redoble del tambor lo mandó a silenciar.`},
+  {id:3,title:"Cristal Roto en Versalles",character:"María Antonieta",style:"Clavicémbalo elegante que se desafina, percusión tribal.",file:"music/03_María_Antonieta_Cristal_Roto_en_Versalles.mp3",lyrics:`Diamantes y sedas, fiestas de cristal.
+La joven de Austria en el trono real.
+Ajenos al barro, cercanos al pan,
+Los ecos del pueblo no la alcanzarán.
+
+Octubre despierta, las madres marchan ya.
+Con picas y antorchas buscando a la majestad.
+El pasadizo secreto, la cama apuñalada,
+La reina extranjera ha sido acorralada.
+
+Del lujo del Trianón a la celda del Temple.
+El cabello blanco, la mirada que no tiemble.
+En la carreta de madera, su último viaje.
+El fin de una era, el fin del linaje.`},
+  {id:4,title:"Entre Dos Mundos",character:"Marqués de La Fayette",style:"Noble, caballeresco, trompeta melancólica, tambores de caja.",file:"music/04_Marqués_de_La_Fayette_Entre_Dos_Mundos.mp3",lyrics:`Héroe de dos mundos, de América a París.
+Buscando la luz en un país gris.
+Sobre su caballo blanco, la Guardia lideró.
+La escarapela tricolor en su pecho brilló.
+
+Pero el centro no aguanta cuando el mundo se parte.
+Entre el Rey y la turba, no hay lugar para el arte.
+Intentó ser el puente, la ley y la paz.
+Pero el fuego jacobino lo dejó atrás.
+
+Llamado traidor por los que antes salvó.
+Hacia las fronteras en la noche escapó.
+El noble ilustrado que la chispa encendió.
+Vio cómo su sueño en cenizas quedó.`},
+  {id:5,title:"La Voz del Trueno",character:"Georges-Jacques Danton",style:"Épico, trompetas triunfales, tambores de guerra.",file:"music/05_Georges-Jacques_Danton_La_Voz_del_Trueno.mp3",lyrics:`¡Audacia, más audacia y siempre audacia!
+¡Ruge el león para salvar a Francia!
+Cuando el prusiano a las puertas llegó,
+Fue la voz de Danton la que al pueblo levantó.
+
+Amigo del pueblo, de la copa y la espada,
+Su fuerza brutal lideró la barricada.
+Pero el Incorruptible no acepta rival,
+Y la sangre de septiembre le pasa factura al final.
+
+Ante el tribunal, su voz hizo temblar,
+Pero el destino del trueno era el de callar.
+"Muestra mi cabeza al pueblo", al verdugo ordenó,
+Valió la pena verle, ¡el gigante cayó!`},
+  {id:6,title:"El Vuelo del Águila",character:"Napoleón Bonaparte",style:"Marcha militar in crescendo, coros épicos, cañonazos.",file:"music/06_Napoleón_Bonaparte_El_Vuelo_del_Águila.mp3",lyrics:`De la isla de Córcega un joven artillero,
+Con mirada de hielo y un genio certero.
+Encontró un ejército roto y sin pan,
+Y les prometió gloria en su nuevo plan.
+
+El puente de Arcole, la bandera en la mano,
+Cruzando el infierno venciendo al pantano.
+Italia a sus pies el mito ha nacido,
+El pequeño cabo a la historia ha vencido.
+
+18 de Brumario, el consejo tembló.
+Las bayonetas brillan, el caos terminó.
+De las cenizas del fuego que a París consumió,
+El águila se alza, ¡el imperio nació!
+
+¡Napoleón! ¡Napoleón! ¡Nuevo Emperador!`}
+];
+
+let activeIdx = 0;
+let isPlaying = false;
+const audio = document.getElementById('audioEl');
+
+function fmt(s) {
+  if(isNaN(s)||!s) return '0:00';
+  return Math.floor(s/60)+':'+(Math.floor(s%60)+'').padStart(2,'0');
+}
+
+function renderTracklist() {
+  const tl = document.getElementById('tracklist');
+  tl.innerHTML = TRACKS.map((t,i) => `
+    <button class="track-btn${i===activeIdx?' active':''}" onclick="selectTrack(${i})">
+      <span class="track-num">${i===activeIdx&&isPlaying?'<span class="eq"><span class="eq-b"></span><span class="eq-b"></span><span class="eq-b"></span></span>':(i+1+'').padStart(2,'0')}</span>
+      <div class="track-info">
+        <span class="track-title-txt">${t.title}</span>
+        <span class="track-char-txt">${t.character}</span>
+      </div>
+      <svg class="music-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </button>`).join('');
+}
+
+function renderPlayer() {
+  const t = TRACKS[activeIdx];
+  const dur = audio.duration;
+  const ct  = audio.currentTime;
+  const pct = dur>0 ? (ct/dur)*100 : 0;
+  const vol = audio.muted ? 0 : audio.volume;
+  document.getElementById('playerCard').innerHTML = `
+    <div class="player-top">
+      <div style="flex:1;min-width:0">
+        <p class="player-title">${t.title}</p>
+        <p class="player-char">Tema de ${t.character}</p>
+        <div class="player-style-box"><b>Estilo:</b> ${t.style}</div>
+      </div>
+      <div class="vinyl${isPlaying?' spinning':''}">
+        <img src="https://picsum.photos/seed/rev${t.id}/200/200?grayscale" alt="cover">
+        <div class="vinyl-hole"></div>
+      </div>
+    </div>
+    <div id="errBanner" class="err-banner" style="display:none">⚠ No se encontró el archivo de audio. Verifica que la carpeta <code>music/</code> esté junto a este HTML.</div>
+    <div class="player-controls">
+      <div class="seek-row">
+        <span class="time-txt">${fmt(ct)}</span>
+        <div class="seek-wrap">
+          <div class="seek-track"><div class="seek-fill" id="seekFill" style="width:${pct}%"></div></div>
+          <input type="range" class="seek-input" min="0" max="${dur||100}" step="0.1" value="${ct}" oninput="seek(this.value)">
+        </div>
+        <span class="time-txt" style="text-align:right">${fmt(dur)}</span>
+      </div>
+      <div class="ctrl-row">
+        <button class="ctrl-btn" onclick="skipBack()" title="Anterior">&#9198;</button>
+        <button class="play-btn" onclick="togglePlay()">${isPlaying?'&#9646;&#9646;':'&#9654;'}</button>
+        <button class="ctrl-btn" onclick="skipFwd()" title="Siguiente">&#9197;</button>
+        <div class="vol-row">
+          <button class="vol-btn" onclick="toggleMute()">${audio.muted||audio.volume===0?'&#128263;':'&#128266;'}</button>
+          <div class="vol-wrap">
+            <div class="vol-track"><div class="vol-fill" id="volFill" style="width:${vol*100}%"></div></div>
+            <input type="range" class="vol-input" min="0" max="1" step="0.01" value="${vol}" oninput="setVol(this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lyrics-lbl">Letra</div>
+    <div class="lyrics-text">${t.lyrics}</div>`;
+}
+
+function selectTrack(i) {
+  if(i===activeIdx){togglePlay();return;}
+  activeIdx=i;
+  audio.src=TRACKS[i].file;
+  audio.load();
+  audio.play().catch(()=>{ isPlaying=false; renderAll(); });
+  isPlaying=true;
+  renderAll();
+}
+function togglePlay(){
+  if(isPlaying){audio.pause();isPlaying=false;}
+  else{audio.play().catch(()=>{isPlaying=false;renderAll();});isPlaying=true;}
+  renderAll();
+}
+function skipBack(){
+  if(audio.currentTime>3){audio.currentTime=0;}
+  else if(activeIdx>0){selectTrack(activeIdx-1);}
+}
+function skipFwd(){if(activeIdx<TRACKS.length-1)selectTrack(activeIdx+1);}
+function seek(v){audio.currentTime=parseFloat(v);}
+function setVol(v){audio.volume=parseFloat(v);audio.muted=false;renderPlayer();}
+function toggleMute(){audio.muted=!audio.muted;renderPlayer();}
+function renderAll(){renderTracklist();renderPlayer();}
+
+audio.addEventListener('timeupdate',()=>{
+  const sf=document.getElementById('seekFill');
+  if(sf&&audio.duration>0)sf.style.width=(audio.currentTime/audio.duration*100)+'%';
+  const tc=document.querySelector('.time-txt');
+  if(tc)tc.textContent=fmt(audio.currentTime);
+});
+audio.addEventListener('loadedmetadata',renderPlayer);
+audio.addEventListener('ended',()=>{if(activeIdx<TRACKS.length-1)selectTrack(activeIdx+1);else{isPlaying=false;renderAll();}});
+audio.addEventListener('error',()=>{const b=document.getElementById('errBanner');if(b)b.style.display='block';});
+
+// init
+audio.src = TRACKS[0].file;
+renderAll();
+</script>
+</body>
+</html>
